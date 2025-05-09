@@ -1,0 +1,67 @@
+@media only screen and (max-width: 500px) {
+    .masthead {
+        padding: 3em 0;
+    }
+    .masthead-heading {
+        font-size: 3em;
+    }
+}
+
+body {
+    /* Typography Declarations */
+    color: #b02222;
+    font-size: 1em;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  background-color:#f0f4f5;
+}
+
+.content-footer,
+.masthead-heading,
+.masthead-intro {
+  text-align: center;
+}
+
+.masthead {
+    padding: 350px;
+    background-image: url(IMG/IMG_3137.JPG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.masthead-intro {
+    /* Layout Declarations */
+    margin-bottom: 0.1em;
+    /* Typography Declarations */
+    font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 2em;
+   color:#3998dc;
+}
+
+.masthead-heading {
+    /* Layout Declarations */
+    margin-top: -0.2em;
+    /* Typography Declarations */
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    font-size: 6em;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  color:21160D;
+  text-shadow:.05em .05em #F2DEC2;
+
+
+}
+.content-footer{
+  margin-top: 2em;
+  padding: 2em 0;
+  background-color: #478bbc;
+  font-size: 1.5em; 
+  font-weight: 200;
+  letter-spacing: 0.05em;  
+}
+a {
+  text-decoration:none;
+  color: #F2DEC2;
+  padding:.5em;
+}
