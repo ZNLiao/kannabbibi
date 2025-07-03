@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>猜猜更多的我</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="style test.css">
+
+  <div class="main">
+    <div class="logo">喵</div>
+  </div>
+        
+ <div class="navbar">
+        <div class="icon">
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="self.html">自我介紹</a></li>
+                <li><a href="hobby.html">興趣與學習</a></li>
+                <li><a href="future.html">未來</a></li>
+                <li><a href="playgame.html">猜猜更多的我</a></li>
+            </ul>
+        </div>
+        </div>
+ </div>
+
+
+  <style>
+  body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+
+  .container {
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+
+  @media (max-width: 600px) {
+    .container {
+      width: 90%;
+    }
+
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .quiz-box {
+    margin-bottom: 20px;
+  }
+
+  .question {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .choices {
+    list-style: none;
+    padding: 0;
+  }
+
+  .choices li {
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .choices li:hover {
+    background-color: #e9e9e9;
+  }
+
+  .submit {
+    background-color: rgb(96, 158, 240);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .result {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .progress-bar {
+  position: sticky; 
+  top: 0;          
+  width: 100%;    
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 5px; 
+  z-index: 999;    
+  margin-bottom: 15px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+}
+    
+  
+
+  .progress {
+    height: 100%;
+    background-color: rgb(96, 158, 240);
+  }
+
+  .current-level {
+    margin-left: 10px;
+  }
+
+  .score {
+  position: absolute; 
+  bottom: 0;          
+  left: 0;           
+  width: 100%;        
+  background-color: #457dca; 
+  color: white;       
+  padding: 10px 0;   
+  font-size: 18px;   
+  text-align: center;
+  border-bottom-left-radius: 10px; 
+  border-bottom-right-radius: 10px;
+  z-index: 10;        
+}
+
+  .hidden {
+    display: none;
+  }
+
+  </style>
+
+  
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>猜猜更多的我</h1>
+      
+        <div class="quiz-box">
+          <p class="question"></p>
+          <div class="progress-bar">
+            <span class="current-level">Question 1/10</span>
+            <div class="progress"></div>
+          </div>
+          <ul class="choices"></ul>
+          <p class="result"></p>
+        </div>
+      
+        <p class="score">Score: <span>0</span>/10</p>
+      </div>
+
+  <script>
+    // Quiz data
+    const questions = [{
+        question: "我討厭吃什麼甜點？",
+        choices: ["起司蛋糕", "果凍", "巧克力", "汽水上面的櫻桃"],
+        correctAnswer: "巧克力"
+      },
+      {
+        question: "我從什麼時候開始讀華德福教育體制？（這題我有寫到～）",
+        choices: ["幼兒園", "小學", "國中", "高中"],
+        correctAnswer: "幼兒園"
+      },
+      {
+        question: "下列何者不是我前三大喜歡的動畫？",
+        choices: ["我推的孩子", "我獨自升級", "水星的魔女", "獵人"],
+        correctAnswer: "我獨自升級"
+      },
+      {
+        question: "我是什麼星座？",
+        choices: ["天秤座", "巨蟹座", "博愛座", "處女座"],
+        correctAnswer: "天秤座"
+      },
+      {
+        question: "在樂團中我最討厭遇到什麼事？？",
+        choices: ["音準不對", "上課聊天", "沒練還在那邊說", "上課不會吹回家也不練"],
+        correctAnswer: "上課不會吹回家也不練"
+      },
+     
+      {
+        question: "我最喜歡的顏色是什麼？",
+        choices: ["藍色", "紫色", "白色", "黑色"],
+        correctAnswer: "紫色"
+      },
+      {
+        question: "我最喜歡的動物是？",
+        choices: ["狗", "馬", "狼", "貓"],
+        correctAnswer: "貓"
+      },
+      {
+        question: "我的個性沒有下列哪一個？",
+        choices: ["外冷內熱", "獨處或團體都ok", "不在他人面前臭臉", "熟人面前超級瘋"],
+        correctAnswer: "不在他人面前臭臉"
+      },
+      {
+        question: "食物裡面可以加蔥嗎？",
+        choices: ["免強", "不行", "絕對不行", "給我滾！"],
+        correctAnswer: "不行"
+      },
+      {
+        question: "我做事時的困難有⋯⋯？",
+        choices: ["被3C吸引", "拖延拖到最後熬夜抱佛腳", "心情好做很快，心情不好就亂做", "以上皆是"],
+        correctAnswer: "以上皆是"
+      }
+      
+    ];
+
+    // Function to shuffle the array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+    // Shuffle the questions array
+    shuffleArray(questions);
+    let currentQuestion = 0;
+    let score = 0;
+
+    function displayQuestion() {
+      const question = questions[currentQuestion];
+      document.querySelector(".question").textContent = question.question;
+      const choicesList = document.querySelector(".choices");
+      choicesList.innerHTML = ""; // Clear previous choices
+      // Enable clicks on choices again for the new question
+      document.querySelectorAll(".choices li").forEach(li => li.style.backgroundColor = '#f4f4f4'); // Reset colors
+      question.choices.forEach(choice => {
+        const choiceElement = document.createElement("li");
+        choiceElement.textContent = choice;
+        choiceElement.addEventListener("click", handleAnswerClick);
+        choicesList.appendChild(choiceElement);
+      });
+      updateProgressBar();
+    }
+
+    function handleAnswerClick() {
+      const chosenElement = this; // Store the clicked element
+      const chosenAnswer = chosenElement.textContent;
+      const correctAnswer = questions[currentQuestion].correctAnswer;
+
+      // Disable further clicks on choices for the current question
+      document.querySelectorAll(".choices li").forEach(li => li.removeEventListener("click", handleAnswerClick));
+
+
+      if (chosenAnswer === correctAnswer) {
+        score++;
+        document.querySelector(".result").textContent = "正確！+1 分！";
+        chosenElement.style.backgroundColor = '#d4edda'; // Light green for correct
+      } else {
+        document.querySelector(".result").textContent = `錯誤。答案是 ${correctAnswer}。`;
+        chosenElement.style.backgroundColor = '#f8d7da'; // Light red for incorrect
+        // Find and highlight the correct answer
+        document.querySelectorAll(".choices li").forEach(li => {
+          if (li.textContent === correctAnswer) {
+            li.style.backgroundColor = '#d4edda';
+          }
+        });
+      }
+
+      updateScore(); // Update score immediately
+
+      setTimeout(() => {
+        // Reset colors before moving to next question
+        document.querySelectorAll(".choices li").forEach(li => li.style.backgroundColor = '#f4f4f4'); // Ensure all reset
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          displayQuestion(); // Load next question
+          document.querySelector(".result").textContent = ""; // Clear result message for next question
+        } else {
+          showFinalScore();
+        }
+      }, 1500); // Increased delay slightly to allow user to see feedback
+    }
+
+    function showFinalScore() {
+      const finalScoreMessage = `你答對了 ${score} 題！太棒了，你對我瞭若指掌！`;
+      document.querySelector(".result").textContent = finalScoreMessage;
+      document.querySelector(".quiz-box").classList.add("hidden");
+
+      const restartButton = document.createElement("button");
+      restartButton.textContent = "再玩一次！";
+      restartButton.style.cssText = "background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;";
+      restartButton.onclick = () => {
+        currentQuestion = 0;
+        score = 0;
+        shuffleArray(questions); // Reshuffle for a new game
+        document.querySelector(".quiz-box").classList.remove("hidden");
+        document.querySelector(".result").textContent = ""; // Clear previous result
+        updateScore();
+        displayQuestion();
+        restartButton.remove(); // Remove the button after restarting
+      };
+      document.querySelector(".container").appendChild(restartButton);
+    }
+
+    function updateProgressBar() {
+      // Calculate progress based on total questions length
+      const progressPercentage = (currentQuestion / questions.length) * 100;
+      const progressBar = document.querySelector(".progress");
+      progressBar.style.width = progressPercentage + "%";
+      document.querySelector(".current-level").textContent = `Question ${currentQuestion + 1}/${questions.length}`;
+    }
+
+    function updateScore() {
+      document.querySelector(".score span").textContent = score;
+      // Update total score display as well
+      document.querySelector(".score").innerHTML = `Score: <span>${score}</span>/${questions.length}`;
+    }
+
+    // Initial display
+    displayQuestion();
+  </script>
+
+</body>
+
+</html>
